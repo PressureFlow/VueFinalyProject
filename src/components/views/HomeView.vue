@@ -22,7 +22,12 @@
                 </li>
                 <li>
                     <router-link :to="{ name: 'status'}">
-                        Результат прошлого дз
+                        Измненение статуса
+                    </router-link>
+                </li>
+                <li>
+                    <router-link :to="{ name: 'objects'}">
+                        Красный квадрат
                     </router-link>
                 </li>
             </ul>

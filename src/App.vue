@@ -37,7 +37,7 @@ export default {
 }
 
 ul {
-  width: 50%;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   margin: 0 auto;
@@ -50,12 +50,16 @@ li {
   padding: 7px;
   border: 1px solid black;
   border-radius: 7px;
-
 }
 
 li a {
   text-decoration: none;
   color: black;
+}
+li:hover {
+  color: white;
+  background-color: rgb(203, 203, 203);
+  transition: all  0.5s ease-in-out;
 }
 
 </style>

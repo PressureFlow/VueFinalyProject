@@ -7,7 +7,8 @@ import SettingProfileView from './components/views/Settings/SettingProfileView.v
 import UserView from './components/views/UserView.vue'
 import NotFoundView from './components/views/Error/NotFoundView.vue'
 import ButtonCounter from './components/views/Counter/ButtonCounter.vue'
-import CheckStatus from './components/CheckStatus.vue'
+import CheckStatus from './components/views/Status/CheckStatus.vue'
+import RedSquare from './components/views/Objects/RedSquare.vue'
 
 const router = createRouter({
     routes: [{
@@ -47,6 +48,12 @@ const router = createRouter({
         path: '/status',
         name: 'status',
         component: CheckStatus
+    },
+    {
+        path: '/objects',
+        name: 'objects',
+        component: RedSquare
+
     }
     ],
     history: createWebHistory()
