@@ -1,18 +1,25 @@
 <template>
-  <router-view v-slot="{ Component }">
-    <transition name="fade" mode="out-in">
-      <component :is="Component"/>
-    </transition>
+  <NavComp/>
 
-  </router-view>
+  <!-- <router-view v-slot="{ Component }"> -->
+    
+    <!-- <transition name="fade" mode="ease-in-out">
+      <component :is="Component"/>
+    </transition> -->
+
+  <router-view/>
+  
 </template>
 
 <script>
-
+import NavComp from './components/Navigation/Navigation.vue'
 
 
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    NavComp
+  }
 }
 </script>
 
@@ -23,7 +30,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .fade-enter-active,
@@ -36,30 +49,6 @@ export default {
   opacity: 0;
 }
 
-ul {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  margin: 0 auto;
-  padding: 0;
-  font-size: large;
-}
 
-li {
-  list-style: none;
-  padding: 7px;
-  border: 1px solid black;
-  border-radius: 7px;
-}
-
-li a {
-  text-decoration: none;
-  color: black;
-}
-li:hover {
-  color: white;
-  background-color: rgb(203, 203, 203);
-  transition: all  0.5s ease-in-out;
-}
 
 </style>

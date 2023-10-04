@@ -1,14 +1,13 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
-import HomeView from './components/views/HomeView.vue'
-import SettingView from './components/views/Settings/SettingView.vue'
-import SettingProfileView from './components/views/Settings/SettingProfileView.vue'
-import UserView from './components/views/UserView.vue'
-import NotFoundView from './components/views/Error/NotFoundView.vue'
-import ButtonCounter from './components/views/Counter/ButtonCounter.vue'
-import CheckStatus from './components/views/Status/CheckStatus.vue'
-import RedSquare from './components/views/Objects/RedSquare.vue'
+import HomeView from './components//HomePage.vue'
+import NotFoundPage from './components/Error/NotFoundPage.vue'
+import ChatPage from './components/Screens/Chats/ChatPage.vue'
+import TestAPI from './components/Screens/TestAPI.vue'
+import ListChat from './components/Screens/Chats/ListChat.vue'
+import NewChat from './components/Screens/Chats/NewChat.vue'
+
 
 const router = createRouter({
     routes: [{
@@ -16,45 +15,34 @@ const router = createRouter({
         name: 'home',
         component: HomeView
     },
-    {
-        path: '/settings',
-        name: 'settings',
-        component: SettingView,
-        children: [{
-            path: 'profile',
-            name: 'settings-profile',
-            component: SettingProfileView,
-            meta: {
-                requiresAuth: true
-            }
-        }]
-    },
-    {
-        path: '/user/:id',
-        name: 'user',
-        component: UserView
-    },
+    
     {
         path: '/:pathMath(.*)*',
         name: '404',
-        component: NotFoundView
+        component: NotFoundPage
     },
     {
-        path: '/counter',
-        name: 'counter',
-        component: ButtonCounter
+        path: '/chat',
+        name: 'chat',
+        component: ChatPage
     },
     {
-        path: '/status',
-        name: 'status',
-        component: CheckStatus
+        path: '/test',
+        name: 'TestAPI',
+        component: TestAPI
     },
     {
-        path: '/objects',
-        name: 'objects',
-        component: RedSquare
-
+        path: '/chat/list',
+        name: 'chatList',
+        component: ListChat
+    },
+    {
+        path: '/chat/list/:id',
+        name: 'newChat',
+        component: NewChat
     }
+    
+    
     ],
     history: createWebHistory()
 })
