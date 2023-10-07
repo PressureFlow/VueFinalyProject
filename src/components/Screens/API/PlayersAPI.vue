@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="API-container">
             <div v-if="isLoad" class="loading">Loading...</div>
 
             <div v-else class="data">
@@ -44,3 +44,16 @@
     }
 
 </script>
+
+<style>
+.title {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+
+
+.API-container div {
+    line-height: 30px;
+}
+</style>

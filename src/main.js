@@ -9,6 +9,7 @@ import TeamAPI from './components/Screens/API/TeamAPI.vue'
 import ListChat from './components/Screens/Chats/ListChat.vue'
 import NewChat from './components/Screens/Chats/NewChat.vue'
 import PlayersAPI from './components/Screens/API/PlayersAPI'
+import HomeAPI from './components/Screens/API/HomeAPI.vue'
 
 
  
@@ -48,6 +49,11 @@ const router = createRouter({
         path: '/players',
         name: 'playersAPI',
         component: PlayersAPI
+    },
+    {
+        path: '/homeapi',
+        name: 'HomeAPI',
+        component: HomeAPI
     }
     
     

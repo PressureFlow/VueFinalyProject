@@ -10,20 +10,16 @@
                 
             </div>
 
-            <PlayersAPI></PlayersAPI>
+            
 
             <router-view></router-view>
         </div>  
 </template>
 
 <script>
-    import PlayersAPI from './PlayersAPI.vue'
 
     export default {
         name: 'TestAPI',
-        components: {
-            PlayersAPI
-        },
         data() {
             return {
                 teamData: [],
@@ -64,13 +60,6 @@
     font-weight: 600;
 }
 
-.API-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-around;
-
-}
 
 .API-container div {
     line-height: 30px;
