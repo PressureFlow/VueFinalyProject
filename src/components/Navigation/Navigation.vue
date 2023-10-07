@@ -3,7 +3,7 @@
         <nav class="navbar">
             <router-link to="/" class="navbar-link">Домашняя</router-link>
             <router-link to="/chat" class="navbar-link">Чат</router-link>
-            <router-link to="/test" class="navbar-link">Подрузка API данных</router-link>
+            <router-link to="/team" class="navbar-link">Подрузка API данных</router-link>
         </nav>
     </div>
 </template>

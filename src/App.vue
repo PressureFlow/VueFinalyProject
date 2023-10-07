@@ -1,6 +1,8 @@
 <template>
   <NavComp/>
 
+  
+
   <!-- <router-view v-slot="{ Component }"> -->
     
     <!-- <transition name="fade" mode="ease-in-out">

@@ -1,57 +1,58 @@
 <template>
 
-    <div v-if="isAuth">
-        <p>Добро пожаловать <b>{{ username }}</b> ! </p>
-        <button @click="logout" class="btn">Выйти</button>
+    <div v-if="!isLoggedIn">
+        <template v-if="showLogin">
+            <login-form @loggedIn="isLoggedIn = true"/>
+            <p>No account yet? <span @click="showLogin=false">SignUp</span> instead.</p>
+        </template>
+
+        <template v-else>
+            <signup-form @loggedIn="isLoggedIn = true"/>
+            <p>Already registered? <span @click="showLogin=true" >Login</span> instead.</p>
+        </template>
     </div>
 
     <div v-else>
-        <label>Введите ваше имя!</label>
-        <input v-model="username" @keyup.enter="login">
-        <button @click="login" class="btn">Войти</button>
+        <h1>Welcome {{ displayName }}</h1>
+        <button @click="logOut" class="btn btn-logout">Log out</button>
+
+        <router-link :to="{ name: 'chat'}">Go to chat</router-link>
+        
     </div>
 
 </template>
 
 <script>
+    import LoginForm from './RegForm/LoginForm.vue'
+    import SignupForm from './RegForm/SignupForm.vue'
+    import { auth } from './RegForm/firebase'
+    import { signOut } from 'firebase/auth'
+
+
+    
+
     export default {
         name: 'HomePage',
+        components: { SignupForm, LoginForm },
         data() {
             return {
-                isAuth: false,
-                username: ''
+                isLoggedIn: false,
+                showLogin: true,
+                displayName: ''
             }
         },
-        created() {
-            if(localStorage.getItem('isAuth')) {
-                this.isAuth = true;
-                this.username = localStorage.getItem('username')
+        
+        beforeUpdate() {
+            if (auth.currentUser) {
+                this.displayName = auth.currentUser.displayName
             }
         },
         methods: {
-            login() {
-                if (this.username !== ""){
-                    this.isAuth = true;
-
-                    localStorage.setItem("isAuth", true)
-                    localStorage.setItem("username", this.username)
-
-                    this.$router.push({
-                        name: 'chat',
-                        query: {
-                            username: this.username
-                        }
+            logOut() {
+                signOut(auth)
+                    .then(() => {
+                        this.isLoggedIn = false
                     })
-                } else {
-                    alert('Введите логин!')
-                }
-            },
-            logout() {
-                this.isAuth = false,
-                this.username = '',
-                localStorage.removeItem('isAuth')
-                localStorage.removeItem('username')
-
             }
         }
     }
@@ -59,12 +60,21 @@
 
 <style scoped>
     div {
-        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         padding: 30px;
         font-size: 22px;
-        display: flex;
-        flex-direction: column;
-        width: 20%;  
+       
+    }
+    span {
+        color: #0055ff;
+    }
+    span:hover {
+        color: #5d93ff;
+        border-bottom: 1px solid #0055ff;
+        cursor: pointer;
     }
     input {
         margin-bottom: 20px;
@@ -103,6 +113,10 @@
         user-select: none;
         appearance: none;
         touch-action: manipulation;
+    }
+
+    .btn-logout{
+        margin-bottom: 20px;
     }
     .btn:focus-visible {
 	box-shadow: 0 0 0 2px #666;

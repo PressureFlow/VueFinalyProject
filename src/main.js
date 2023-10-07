@@ -1,14 +1,17 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
+
 import App from './App.vue'
 import HomeView from './components//HomePage.vue'
 import NotFoundPage from './components/Error/NotFoundPage.vue'
 import ChatPage from './components/Screens/Chats/ChatPage.vue'
-import TestAPI from './components/Screens/TestAPI.vue'
+import TeamAPI from './components/Screens/API/TeamAPI.vue'
 import ListChat from './components/Screens/Chats/ListChat.vue'
 import NewChat from './components/Screens/Chats/NewChat.vue'
+import PlayersAPI from './components/Screens/API/PlayersAPI'
 
 
+ 
 const router = createRouter({
     routes: [{
         path: '/',
@@ -27,9 +30,9 @@ const router = createRouter({
         component: ChatPage
     },
     {
-        path: '/test',
+        path: '/team',
         name: 'TestAPI',
-        component: TestAPI
+        component: TeamAPI
     },
     {
         path: '/chat/list',
@@ -40,6 +43,11 @@ const router = createRouter({
         path: '/chat/list/:id',
         name: 'newChat',
         component: NewChat
+    },
+    {
+        path: '/players',
+        name: 'playersAPI',
+        component: PlayersAPI
     }
     
     
@@ -57,6 +65,17 @@ router.beforeEach((to) => {
     }
 })
 
+
+
 const app = createApp(App)
-app.use(router)
+app.use(router) 
 app.mount('#app')
+
+    
+
+
+
+
+
+
+

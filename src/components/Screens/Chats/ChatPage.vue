@@ -1,7 +1,7 @@
 <template>
-    <div class="chat-container">
-        <div v-if="username"  class="chat">
-            <div>
+
+        <div class="chat-container">
+            <div v-if="username" class="chat">
                 <h2>Чат</h2>
 
                 <div class="text" v-for="message in messages" :key="message.id">
@@ -9,25 +9,18 @@
                 </div>
 
                 <div v-show="emptyMsg" class="empty">Текущих сообщений нет</div>
+            
+
+                <input v-model="newMessage" placeholder="Введите ваше сообщение">
+
+                <button @click="sendMessage" @keyup.enter="sendMessage" class="btn">Отправить</button>
+                <button v-show="deleteBtn" @click="delMessage" class="btn">Удалить</button>  
             </div>
 
-            <input v-model="newMessage" placeholder="Введите ваше сообщение">
-
-            <button @click="sendMessage" @keyup.enter="sendMessage" class="btn">Отправить</button>
-            <button v-show="deleteBtn" @click="delMessage" class="btn">Удалить</button>  
+            <ListChat></ListChat>
         </div>
 
-        <div v-else class="alert">
-            Для авторизации перейдите по <router-link :to="{name: 'home'}">ссылке</router-link>
-        </div>
         
-        <ListChat></ListChat>
-        
-        
-
-        
-    
-    </div>
     <router-view></router-view>
 </template>
 
@@ -81,7 +74,7 @@ import ListChat from './ListChat.vue';
 <style>
     .chat {
         display: flex;
-        flex-direction: column;
+        flex-direction:row-reverse;
         width: 40%;
         margin: 0 auto;
     }
