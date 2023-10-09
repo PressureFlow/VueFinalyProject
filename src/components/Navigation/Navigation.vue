@@ -79,7 +79,6 @@
     align-items: center;
     height: 70px;
     width: 100%;
-    margin-bottom: 20px;
 }
 
 .navbar-link {
