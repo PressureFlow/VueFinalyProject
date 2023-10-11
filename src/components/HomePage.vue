@@ -1,5 +1,7 @@
 <template>
 
+    
+
     <div v-if="!isLoggedIn">
         <template v-if="showLogin">
             <login-form @loggedIn="isLoggedIn = true"/>
@@ -13,12 +15,11 @@
     </div>
 
     <div v-else>
-        <h1>Welcome {{ displayName }}</h1>
-        <button @click="logOut" class="btn btn-logout">Log out</button>
+            <h1>Welcome {{ displayName }}</h1>
+            <button @click="logOut" class="btn btn-logout">Log out</button>
 
-        <router-link :to="{ name: 'chat'}">Go to chat</router-link>
-        
-    </div>
+            <router-link :to="{ name: 'chat'}">Go to chat</router-link>
+        </div>  
 
 </template>
 
@@ -34,28 +35,47 @@
     export default {
         name: 'HomePage',
         components: { SignupForm, LoginForm },
+        
         data() {
             return {
                 isLoggedIn: false,
                 showLogin: true,
-                displayName: ''
+                displayName: '',
+                
+                
             }
+            
+        },
+        computed: {
+             
         },
         
         beforeUpdate() {
             if (auth.currentUser) {
                 this.displayName = auth.currentUser.displayName
+                localStorage.getItem('isLoggedIn') === 'true'
             }
+            
+
         },
         methods: {
             logOut() {
                 signOut(auth)
                     .then(() => {
                         this.isLoggedIn = false
+                        
                     })
+                    
             }
-        }
-    }
+            
+            
+            
+            
+        },
+        
+    
+};
+    
 </script>
 
 <style scoped>

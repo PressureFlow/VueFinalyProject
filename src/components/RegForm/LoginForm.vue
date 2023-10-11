@@ -4,7 +4,7 @@
         <input type="text" placeholder="Username" required v-model="username">
         <input type="email" placeholder="Email" required v-model="email">
         <input type="password" placeholder="Password" required v-model="password">
-        <button  class="btn">Log in</button>
+        <button class="btn">Log in</button>
     </form>
 </template>
 
@@ -17,21 +17,22 @@ export default {
         return {
             email: '', 
             password: '',
-            username: ''
+            username: '',
+
         }
     },
-    created() {
-            if(localStorage.getItem('isAuth')) {
-                this.isAuth = true;
-                this.username = localStorage.getItem('username')
-            }
-        },
+
+            
+        
     methods: {
         login() {
             signInWithEmailAndPassword(auth, this.email, this.password)
                 .then(() => {
                     this.$emit('loggedIn')
                 })
+                
+                localStorage.setItem("welcomeMessage ", true)
+                
 
                 if (this.username !== ""){
                     this.isLoggedIn = true;

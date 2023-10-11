@@ -38,8 +38,8 @@ export default {
         justify-content: space-around;
     }
     .ahpc-list a {
-        color: white;
-        
+        color: rgba(255, 74, 74, 0.729);
+
     }
     
 

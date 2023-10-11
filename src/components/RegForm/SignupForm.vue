@@ -37,8 +37,14 @@ export default {
                         this.$emit('loggedIn')
                     })
                 })
-                
-        },
+             
+                if (this.username !== ""){
+                    this.isLoggedIn = true;
+
+                    localStorage.setItem("isLoggedIn ", true)
+                    localStorage.setItem("username", this.username)
+                }   
+        }
     }
 }
 </script>
